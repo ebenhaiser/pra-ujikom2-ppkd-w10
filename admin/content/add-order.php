@@ -200,13 +200,13 @@ $queryCustomer = mysqli_query($connection,  "SELECT * FROM customer");
                         </select>
                     </div>
                     <div class="col-sm-6 mb-3">
-                        <label for="" class="form-label">Order Date</label>
+                        <label for="" class="form-label">Order Start Date</label>
                         <input type="date" class="form-control" name="order_date"
                             value="<?= isset($_GET['error']) && isset($_GET['orderDate']) ? $_GET['orderDate'] : '' ?>"
                             required>
                     </div>
                     <div class="col-sm-6 mb-3">
-                        <label for="" class="form-label">Order Date</label>
+                        <label for="" class="form-label">Order End Date</label>
                         <input type="date" class="form-control" name="order_end_date"
                             value="<?= isset($_GET['error']) && isset($_GET['orderEndDate']) ? $_GET['orderEndDate'] : '' ?>"
                             required>

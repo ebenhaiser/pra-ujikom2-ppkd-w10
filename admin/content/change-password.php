@@ -1,31 +1,31 @@
 <?php
 include 'controller/connection.php';
 if (empty($_SESSION)) {
-  header("Location: controller/logout.php");
+    header("Location: controller/logout.php");
 }
 $profileUserID = $_SESSION['id'];
 $queryProfile = mysqli_query($connection, "SELECT * FROM user WHERE id='$profileUserID'");
 $rowProfile = mysqli_fetch_assoc($queryProfile);
 
 if (isset($_POST['save'])) {
-  $oldPassword = mysqli_real_escape_string($connection, $_POST['oldPassword']);
-  $newPassword = mysqli_real_escape_string($connection, $_POST['newPassword']);
-  $confirmPassword = mysqli_real_escape_string($connection, $_POST['confirmPassword']);
+    $oldPassword = mysqli_real_escape_string($connection, $_POST['oldPassword']);
+    $newPassword = mysqli_real_escape_string($connection, $_POST['newPassword']);
+    $confirmPassword = mysqli_real_escape_string($connection, $_POST['confirmPassword']);
 
-  if ($oldPassword == $rowProfile['password']) {
-    if ($newPassword == $confirmPassword) {
-      $updatePassword = mysqli_query($connection, "UPDATE user SET password='$newPassword' WHERE id='$profileUserID'");
-      if ($updatePassword) {
-        header('Location: ?page=change-password&changePassword=success');
-      } else {
-        header('Location: ?page=change-password&changePassword=error');
-      }
+    if ($oldPassword == $rowProfile['password']) {
+        if ($newPassword == $confirmPassword) {
+            $updatePassword = mysqli_query($connection, "UPDATE user SET password='$newPassword' WHERE id='$profileUserID'");
+            if ($updatePassword) {
+                header('Location: ?page=change-password&changePassword=success');
+            } else {
+                header('Location: ?page=change-password&changePassword=error');
+            }
+        } else {
+            header('Location: ?page=change-password&changePassword=notMatch');
+        }
     } else {
-      header('Location: ?page=change-password&changePassword=notMatch');
+        header('Location: ?page=change-password&changePassword=wrongPassword');
     }
-  } else {
-    header('Location: ?page=change-password&changePassword=wrongPassword');
-  }
 }
 
 ?>
@@ -35,27 +35,7 @@ if (isset($_POST['save'])) {
         <h3>Change Password</h3>
     </div>
     <div class="card-body">
-        <?php if (isset($_GET['changePassword']) && $_GET['changePassword'] == 'success'): ?>
-        <div class="alert alert-success alert-dismissible" role="alert">
-            Change Password Success!
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php elseif (isset($_GET['changePassword']) && $_GET['changePassword'] == 'error'): ?>
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            Unable to change password, please try again.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php elseif (isset($_GET['changePassword']) && $_GET['changePassword'] == 'notMatch'): ?>
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            New and confirm passwords do not match, please try again.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php elseif (isset($_GET['changePassword']) && $_GET['changePassword'] == 'wrongPassword'): ?>
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            Wrong old password, please try again.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php endif ?>
+        <?php include 'controller/alert-data-profile.php' ?>
         <div class="row">
             <div class="col-sm-6 mx-auto">
                 <form action="" method="post">

@@ -159,14 +159,22 @@ if (isset($_POST['login'])) {
             <p class="mb-4">Please sign-in to your account</p>
 
             <?php if (isset($_GET['login']) && $_GET['login'] == 'failed') : ?>
-              <div class="alert alert-danger alert-dismissible" role="alert">
-                Invalid email or password.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              <div class="bs-toast toast toast-placement-ex m-2 fade bg-danger top-0 start-50 translate-middle-x show" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+                <div class="toast-header">
+                  <i class="bx bx-edit me-2"></i>
+                  <div class="me-auto fw-semibold">Login</div>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">Invalid email or password.</div>
               </div>
             <?php elseif (isset($_GET['register']) && $_GET['register'] == 'success'): ?>
-              <div class="alert alert-success alert-dismissible" role="alert">
-                Your account has registered successfully.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              <div class="bs-toast toast toast-placement-ex m-2 fade bg-success top-0 start-50 translate-middle-x show" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+                <div class="toast-header">
+                  <i class="bx bx-edit me-2"></i>
+                  <div class="me-auto fw-semibold">Register</div>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">Your account has registered successfully.</div>
               </div>
             <?php endif ?>
 

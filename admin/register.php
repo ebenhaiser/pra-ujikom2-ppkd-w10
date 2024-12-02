@@ -169,19 +169,31 @@ $queryLevel = mysqli_query($connection, "SELECT * FROM level ORDER BY id ASC");
             <p class="mb-4">Make your account to get access!</p>
 
             <?php if (isset($_GET['error']) && $_GET['error'] == 'emailAlreadyRegistered'): ?>
-              <div class="alert alert-danger alert-dismissible" role="alert">
-                This EMAIL is already registered.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              <div class="bs-toast toast toast-placement-ex m-2 fade bg-danger top-0 start-50 translate-middle-x show" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+                <div class="toast-header">
+                  <i class="bx bx-edit me-2"></i>
+                  <div class="me-auto fw-semibold">Login</div>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">This EMAIL is already registered.</div>
               </div>
             <?php elseif (isset($_GET['error']) && $_GET['error'] == 'usernameAlreadyRegistered'): ?>
-              <div class="alert alert-danger alert-dismissible" role="alert">
-                This USERNAME is already registered.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              <div class="bs-toast toast toast-placement-ex m-2 fade bg-danger top-0 start-50 translate-middle-x show" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+                <div class="toast-header">
+                  <i class="bx bx-edit me-2"></i>
+                  <div class="me-auto fw-semibold">Login</div>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">This USERNAME is already registered.</div>
               </div>
             <?php elseif (isset($_GET['error']) && $_GET['error'] == 'notAgreeTerms'): ?>
-              <div class="alert alert-danger alert-dismissible" role="alert">
-                You must agree to the terms and conditions to proceed.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              <div class="bs-toast toast toast-placement-ex m-2 fade bg-danger top-0 start-50 translate-middle-x show" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+                <div class="toast-header">
+                  <i class="bx bx-edit me-2"></i>
+                  <div class="me-auto fw-semibold">Login</div>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">You must agree to the terms and conditions to proceed.</div>
               </div>
             <?php endif ?>
 

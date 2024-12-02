@@ -47,7 +47,7 @@ $queryLevel = mysqli_query($connection, "SELECT * FROM level");
         <h3>My Profile</h3>
     </div>
     <div class="card-body">
-        <?php include 'controller/alert-data-crud.php' ?>
+        <?php include 'controller/alert-data-profile.php' ?>
         <img width="150px"
             src="<?= !empty($rowEdit['profile_picture']) && file_exists('img/profile_picture/' . $rowEdit['profile_picture']) ? 'img/profile_picture/' . $rowEdit['profile_picture'] : 'https://placehold.co/100' ?>"
             alt="" class="mt-4 rounded">

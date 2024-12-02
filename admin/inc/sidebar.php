@@ -71,6 +71,12 @@ $dataNavbar = mysqli_fetch_assoc($queryNavbar);
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
+        <li class="menu-item <?= isset($_GET['page']) && ($_GET['page'] == 'about') ? 'active' : '' ?>">
+            <a href="?page=about-us" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-question-mark"></i>
+                <div data-i18n="Analytics">About Us</div>
+            </a>
+        </li>
 
         <!-- Admin / master data -->
         <?php if ($dataNavbar['id_level'] == 1) : ?>
@@ -109,7 +115,7 @@ $dataNavbar = mysqli_fetch_assoc($queryNavbar);
             <!-- Operator -->
         <?php elseif ($dataNavbar['id_level'] == 2) : ?>
             <li class="menu-header small text-uppercase">
-                <span class="menu-header-text">Transaction Data</span>
+                <span class="menu-header-text">Order Data</span>
             </li>
             <li
                 class="menu-item <?= (isset($_GET['page']) && ($_GET['page'] == 'order' || $_GET['page'] == 'add-order')) ? 'active' : '' ?>">
@@ -129,7 +135,7 @@ $dataNavbar = mysqli_fetch_assoc($queryNavbar);
             <!-- Pimpinan -->
         <?php elseif ($dataNavbar['id_level'] == 3) : ?>
             <li class="menu-header small text-uppercase">
-                <span class="menu-header-text">Transaction Data</span>
+                <span class="menu-header-text">Report Data</span>
             </li>
             <li
                 class="menu-item <?= (isset($_GET['page']) && ($_GET['page'] == 'report' || $_GET['page'] == 'add-report')) ? 'active' : '' ?>">

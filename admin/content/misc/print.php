@@ -172,7 +172,7 @@ WHERE id_order = '$id'");
                         <tr>
                             <td><?= $dataOrderDetail['service_name'] ?></td>
                             <td><?= 'Rp ' . number_format($dataOrderDetail['price'], 2, ',', '.') ?></td>
-                            <td><?= $dataOrderDetail['qty'] ?></td>
+                            <td><?= $dataOrderDetail['qty'] . ' gram(s)' ?></td>
                             <td><?= 'Rp ' . number_format($dataOrderDetail['subtotal'], 2, ',', '.') ?></td>
                         </tr>
                     <?php endwhile ?>

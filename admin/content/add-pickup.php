@@ -137,7 +137,7 @@ $queryCustomer = mysqli_query($connection,  "SELECT * FROM customer");
                             <td><?= isset($rowOrderList['service_name']) ? $rowOrderList['service_name'] : '-' ?></td>
                             <td><?= isset($rowOrderList['price']) ? 'Rp ' . number_format($rowOrderList['price'], 2, ',', '.') : '-' ?>
                             </td>
-                            <td><?= isset($rowOrderList['qty']) ? $rowOrderList['qty'] : '-' ?></td>
+                            <td><?= isset($rowOrderList['qty']) ? $rowOrderList['qty'] . ' gram(s)' : '-' ?></td>
                             <td><?= isset($rowOrderList['subtotal']) ? 'Rp ' . number_format($rowOrderList['subtotal'], 2, ',', '.') : '-' ?>
                             </td>
                         </tr>

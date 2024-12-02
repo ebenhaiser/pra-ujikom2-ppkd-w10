@@ -127,7 +127,7 @@ $queryCustomer = mysqli_query($connection,  "SELECT * FROM customer");
                     <tr>
                         <th>Service Name</th>
                         <th>Price</th>
-                        <th>Quantity (per gram)</th>
+                        <th>Quantity</th>
                         <th>Subtotal</th>
                     </tr>
                 </thead>
@@ -139,7 +139,7 @@ $queryCustomer = mysqli_query($connection,  "SELECT * FROM customer");
                             <td><?= isset($rowOrderList['service_name']) ? $rowOrderList['service_name'] : '-' ?></td>
                             <td><?= isset($rowOrderList['price']) ? 'Rp ' . number_format($rowOrderList['price'], 2, ',', '.') : '-' ?>
                             </td>
-                            <td><?= isset($rowOrderList['qty']) ? $rowOrderList['qty'] : '-' ?></td>
+                            <td><?= isset($rowOrderList['qty']) ? $rowOrderList['qty'] . ' gram(s)' : '-' ?></td>
                             <td><?= isset($rowOrderList['subtotal']) ? 'Rp ' . number_format($rowOrderList['subtotal'], 2, ',', '.') : '-' ?>
                             </td>
                         </tr>
@@ -208,8 +208,12 @@ $queryCustomer = mysqli_query($connection,  "SELECT * FROM customer");
                     </div>
                     <input type="hidden" id="price">
                     <div class="col-sm-6 mb-3">
-                        <label for="" class="form-label">Quantity (per gram)</label>
-                        <input type="number" class="form-control" name="qty" placeholder="Enter quantity" id="selected_qty">
+                        <label for="" class="form-label">Quantity (gram)</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" placeholder="Enter quantity" name="qty" id="selected_qty" aria-describedby="basic-addon13">
+                            <span class="input-group-text" id="basic-addon13">gram</span>
+                        </div>
+                        <!-- <input type="number" class="form-control" name="qty" placeholder="Enter quantity" id="selected_qty"> -->
                     </div>
                 </div>
                 <hr>

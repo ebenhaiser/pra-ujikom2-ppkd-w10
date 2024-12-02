@@ -15,11 +15,11 @@ if (isset($_POST['login'])) {
       header("location:index.php");
       die;
     } else {
-      header("location:login.php?login=failed");
+      header("location:login.php?login=failed&email=" . $email);
       die;
     }
   } else {
-    header("location:login.php?login=failed");
+    header("location:login.php?login=failed&email=" . $email);
     die;
   }
 }
@@ -167,15 +167,6 @@ if (isset($_POST['login'])) {
                 </div>
                 <div class="toast-body">Invalid email or password.</div>
               </div>
-            <?php elseif (isset($_GET['register']) && $_GET['register'] == 'success'): ?>
-              <div class="bs-toast toast toast-placement-ex m-2 fade bg-success top-0 start-50 translate-middle-x show" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-                <div class="toast-header">
-                  <i class="bx bx-edit me-2"></i>
-                  <div class="me-auto fw-semibold">Register</div>
-                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">Your account has registered successfully.</div>
-              </div>
             <?php endif ?>
 
             <form id="formAuthentication" class="mb-3" action="" method="POST">
@@ -187,7 +178,7 @@ if (isset($_POST['login'])) {
                   id="email"
                   name="email"
                   placeholder="Enter your email"
-                  value=""
+                  value="<?= isset($_GET['email']) ? $_GET['email'] : '' ?>"
                   autofocus />
               </div>
               <div class="mb-3 form-password-toggle">
@@ -212,24 +203,24 @@ if (isset($_POST['login'])) {
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="remember-me" />
                   <label class="form-check-label" for="remember-me"> Remember Me </label>
-                </div> -->
-          </div>
-          <div class="mb-3">
-            <button class="btn btn-primary d-grid mx-auto" type="submit" name="login" class="">Sign in</button>
-          </div>
-          </form>
+                </div>
+              </div> -->
+              <div class="mt-5">
+                <button class="btn btn-primary d-grid mx-auto" type="submit" name="login" class="">Sign in</button>
+              </div>
+            </form>
 
-          <p class="text-center">
+            <!-- <p class="text-center">
             <span>New on our platform?</span>
             <a href="register.php">
               <span>Create an account</span>
             </a>
-          </p>
+          </p> -->
+          </div>
         </div>
+        <!-- /Register -->
       </div>
-      <!-- /Register -->
     </div>
-  </div>
   </div>
 
   <!-- / Content -->

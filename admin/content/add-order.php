@@ -269,9 +269,17 @@ $queryCustomer = mysqli_query($connection,  "SELECT * FROM customer");
                     </tfoot>
                 </table>
                 <input type="hidden" name="order_status" value="0">
-                <div align="right">
-                    <a href="?page=order" class="btn btn-secondary">Back</a>
-                    <button class="btn btn-primary" type="submit" name="add_order">Add</button>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="me-4"><i class="bx bx-plus"></i> = Add to Order List</span>
+                        <span><i class="bx bx-trash"></i> = Delete</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <div align="right">
+                            <a href="?page=order" class="btn btn-secondary">Back</a>
+                            <button class="btn btn-primary" type="submit" name="add_order">Add</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

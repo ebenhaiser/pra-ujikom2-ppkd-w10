@@ -248,6 +248,7 @@ $queryCustomer = mysqli_query($connection,  "SELECT * FROM customer");
                 <table class="table table-responsive table-bordered table-striped mb-3">
                     <thead>
                         <tr>
+                            <th>Act</th>
                             <th>Service Name</th>
                             <th>Price</th>
                             <th>Quantity (per gram)</th>
@@ -258,7 +259,7 @@ $queryCustomer = mysqli_query($connection,  "SELECT * FROM customer");
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3" align="right"><strong>Total Price</strong></td>
+                            <td colspan="4" align="right"><strong>Total Price</strong></td>
                             <td>
                                 <input type="text" id="total_price_formatted" style="border: none; outline: none;"
                                     class="form-control" readonly>

@@ -19,7 +19,7 @@ if (isset($_GET['delete'])) {
 
         $queryValidationEmail = mysqli_query($connection, "SELECT * FROM user WHERE id != '$id_level' AND email = '$email'");
         if (mysqli_num_rows($queryValidationEmail) > 0) {
-            header("location: ?page=add-user&edit=" . $idEdit . "&error=emailAlreadyRegistered&email=" . $email . "&username=" . $username);
+            header("location: ?page=add-user&edit=" . $idEdit . "&error=emailAlreadyRegistered");
             die;
         }
 
@@ -67,13 +67,13 @@ $queryLevel = mysqli_query($connection, "SELECT * FROM level");
                 <div class="col-sm-6 mb-3">
                     <label for="username" class="form-label">Nama</label>
                     <input type="text" class="form-control" id="username" name="username" placeholder="Enter Name"
-                        value="<?= !isset($_GET['error']) && isset($_GET['edit']) ? $rowEdit['username'] : '' ?><?= isset($_GET['error']) && isset($_GET['username']) ? $_GET['username'] : '' ?>"
+                        value="<?= !isset($_GET['email']) && isset($_GET['edit']) ? $rowEdit['username'] : '' ?><?= isset($_GET['error']) && isset($_GET['username']) ? $_GET['username'] : '' ?>"
                         required>
                 </div>
                 <div class=" col-sm-6 mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email"
-                        value="<?= !isset($_GET['error']) && isset($_GET['edit']) ? $rowEdit['email'] : '' ?><?= isset($_GET['error']) && isset($_GET['email']) ? $_GET['email'] : '' ?>"
+                        value="<?= !isset($_GET['email']) && isset($_GET['edit']) ? $rowEdit['email'] : '' ?><?= isset($_GET['error']) && isset($_GET['email']) ? $_GET['email'] : '' ?>"
                         required>
                 </div>
                 <div class="col-sm-6 mb-3">

@@ -10,6 +10,12 @@ if (isset($_POST['edit'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
 
+    $queryValidationEmail = mysqli_query($connection, "SELECT * FROM user WHERE id != '$idEdit' AND email = '$email'");
+    if (mysqli_num_rows($queryValidationEmail) > 0) {
+        header("location: ?page=my-profile&error=emailAlreadyRegistered");
+        die;
+    }
+
     if (!empty($_FILES['photo']['name'])) {
         $namaFotoLama = $_FILES['photo']['name'];
 
@@ -41,7 +47,17 @@ $queryLevel = mysqli_query($connection, "SELECT * FROM level");
 // }
 
 ?>
-
+<?php if (isset($_GET['error']) && $_GET['error'] == 'emailAlreadyRegistered'): ?>
+    <div class="bs-toast toast toast-placement-ex m-2 fade bg-danger top-0 start-50 translate-middle-x show" role="alert"
+        aria-live="assertive" aria-atomic="true" data-delay="2000">
+        <div class="toast-header">
+            <i class="bx bx-edit me-2"></i>
+            <div class="me-auto fw-semibold">Login</div>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">This EMAIL is already registered.</div>
+    </div>
+<?php endif ?>
 <div class="card shadow">
     <div class="card-header">
         <h3>My Profile</h3>

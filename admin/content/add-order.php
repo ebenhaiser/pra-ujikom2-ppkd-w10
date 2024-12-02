@@ -10,7 +10,7 @@ if (mysqli_num_rows($getOrderCodeQuery) > 0) {
 } else {
     $orderCodeID = 0;
 }
-$orderCode = "LNDRY-" . date('YmdHis') . $orderCodeID + 1;
+$newOrderCode = "LNDRY-" . date('YmdHis') . $orderCodeID + 1;
 
 if (isset($_POST['add_order'])) {
     $id_customer = $_POST['id_customer'];
@@ -20,6 +20,11 @@ if (isset($_POST['add_order'])) {
     $order_status = $_POST['order_status'];
     $total_price = $_POST['total_price'];
     $id_service = $_POST['id_service'];
+
+    if (empty($id_service)) {
+        header("Location:?page=add-order&error=orderEmpty&idCustomer=" . $id_customer . "&orderCode=" . $order_code . "&orderDate=" . $order_date . "&orderEndDate=" . $order_end_date);
+        die;
+    }
 
     $insert_trans_order = mysqli_query($connection, "INSERT INTO trans_order (id_customer, order_code, order_date, order_end_date, order_status, total_price) VALUES ('$id_customer', '$order_code', '$order_date', '$order_end_date', '$order_status', '$total_price')");
     $trans_order_id = mysqli_insert_id($connection);
@@ -58,7 +63,17 @@ if (isset($_POST['add_order'])) {
 $queryService = mysqli_query($connection, "SELECT * FROM type_of_service");
 $queryCustomer = mysqli_query($connection,  "SELECT * FROM customer");
 ?>
-
+<?php if (isset($_GET['error']) && $_GET['error'] == 'orderEmpty'): ?>
+    <div class="bs-toast toast toast-placement-ex m-2 fade bg-danger top-0 start-50 translate-middle-x show" role="alert"
+        aria-live="assertive" aria-atomic="true" data-delay="2000">
+        <div class="toast-header">
+            <i class="bx bx-edit me-2"></i>
+            <div class="me-auto fw-semibold">Add Order</div>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">Order list cannot be empty. Please specify the order.</div>
+    </div>
+<?php endif ?>
 <?php if (isset($_GET['view'])) : ?>
     <div class="row">
         <div class="col-sm-6">
@@ -170,24 +185,31 @@ $queryCustomer = mysqli_query($connection,  "SELECT * FROM customer");
                     <div class="col-sm-6 mb-3">
                         <label for="" class="form-label">Order Code</label>
                         <input type="text" class="form-control" id="" name="order_code" placeholder="Enter phone number"
-                            value="<?= $orderCode ?>" readonly>
+                            value="<?= !isset($_GET['error']) && !isset($_GET['orderCode']) ? $newOrderCode : $_GET['orderCode'] ?>"
+                            readonly>
                     </div>
                     <div class="col-sm-6 mb-3">
                         <label for="" class="form-label">Customer Name</label>
-                        <select name="id_customer" id="" class="form-control">
+                        <select name="id_customer" id="" class="form-control" required>
                             <option value="">-- choose customer --</option>
                             <?php while ($rowCustomer = mysqli_fetch_assoc($queryCustomer)) : ?>
-                                <option value="<?= $rowCustomer['id'] ?>"><?= $rowCustomer['customer_name'] ?></option>
+                                <option value="<?= $rowCustomer['id'] ?>"
+                                    <?= isset($_GET['error']) && isset($_GET['idCustomer']) && $_GET['idCustomer'] == $rowCustomer['id'] ? 'selected' : '' ?>>
+                                    <?= $rowCustomer['customer_name'] ?></option>
                             <?php endwhile ?>
                         </select>
                     </div>
                     <div class="col-sm-6 mb-3">
                         <label for="" class="form-label">Order Date</label>
-                        <input type="date" class="form-control" name="order_date">
+                        <input type="date" class="form-control" name="order_date"
+                            value="<?= isset($_GET['error']) && isset($_GET['orderDate']) ? $_GET['orderDate'] : '' ?>"
+                            required>
                     </div>
                     <div class="col-sm-6 mb-3">
                         <label for="" class="form-label">Order Date</label>
-                        <input type="date" class="form-control" name="order_end_date">
+                        <input type="date" class="form-control" name="order_end_date"
+                            value="<?= isset($_GET['error']) && isset($_GET['orderEndDate']) ? $_GET['orderEndDate'] : '' ?>"
+                            required>
                     </div>
 
                 </div>
@@ -210,7 +232,8 @@ $queryCustomer = mysqli_query($connection,  "SELECT * FROM customer");
                     <div class="col-sm-6 mb-3">
                         <label for="" class="form-label">Quantity (gram)</label>
                         <div class="input-group">
-                            <input type="number" class="form-control" placeholder="Enter quantity" name="qty" id="selected_qty" aria-describedby="basic-addon13">
+                            <input type="number" class="form-control" placeholder="Enter quantity" name="qty"
+                                id="selected_qty" aria-describedby="basic-addon13">
                             <span class="input-group-text" id="basic-addon13">gram(s)</span>
                         </div>
                         <!-- <input type="number" class="form-control" name="qty" placeholder="Enter quantity" id="selected_qty"> -->

@@ -211,7 +211,7 @@ $queryCustomer = mysqli_query($connection,  "SELECT * FROM customer");
                         <label for="" class="form-label">Quantity (gram)</label>
                         <div class="input-group">
                             <input type="number" class="form-control" placeholder="Enter quantity" name="qty" id="selected_qty" aria-describedby="basic-addon13">
-                            <span class="input-group-text" id="basic-addon13">gram</span>
+                            <span class="input-group-text" id="basic-addon13">gram(s)</span>
                         </div>
                         <!-- <input type="number" class="form-control" name="qty" placeholder="Enter quantity" id="selected_qty"> -->
                     </div>

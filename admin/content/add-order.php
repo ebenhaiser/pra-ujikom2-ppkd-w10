@@ -1,5 +1,6 @@
 <?php
 require_once 'controller/connection.php';
+include 'controller/operator-validation.php';
 
 // get order code
 $getOrderCodeQuery = mysqli_query($connection, "SELECT id FROM trans_order ORDER BY id DESC LIMIT 1");

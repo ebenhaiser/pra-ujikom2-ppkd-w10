@@ -1,4 +1,5 @@
 <?php
+include 'controller/administrator-validation.php';
 $queryData = mysqli_query($connection, "SELECT user.id, user.deleted_at, user.username, user.email, level.level_name FROM user LEFT JOIN level ON user.id_level = level.id ORDER BY user.id_level ASC, user.updated_at DESC");
 ?>
 <div class="card shadow">

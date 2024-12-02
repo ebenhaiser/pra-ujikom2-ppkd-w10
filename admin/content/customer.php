@@ -1,4 +1,5 @@
 <?php
+include 'controller/administrator-validation.php';
 $queryData = mysqli_query($connection, "SELECT * FROM customer ORDER BY updated_at DESC");
 ?>
 <div class="card shadow">

@@ -1,5 +1,6 @@
 <?php
 require_once 'controller/connection.php';
+include 'controller/administrator-validation.php';
 
 if (isset($_GET['delete'])) {
     $idDelete = $_GET['delete'];

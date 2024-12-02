@@ -1,6 +1,6 @@
 <?php
 require_once 'controller/connection.php';
-
+include 'controller/operator-validation.php';
 
 if (isset($_GET['view'])) {
     // trans order data

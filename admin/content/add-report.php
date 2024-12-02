@@ -1,6 +1,6 @@
 <?php
 require_once 'controller/connection.php';
-
+include 'controller/pimpinan-validation.php';
 
 if (isset($_GET['view'])) {
     // trans order data

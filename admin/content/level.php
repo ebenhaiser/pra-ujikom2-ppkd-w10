@@ -1,4 +1,5 @@
 <?php
+include 'controller/administrator-validation.php';
 $queryData = mysqli_query($connection, "SELECT * FROM level ORDER BY id ASC");
 ?>
 <div class="card shadow">

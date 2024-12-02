@@ -7,6 +7,7 @@ if (isset($_POST['register'])) {
   $username = $_POST['username'];
   $email = $_POST['email'];
   $password = $_POST['password'];
+  $id_level = $_POST['id_level'];
 
   $queryValidationEmail = mysqli_query($connection, "SELECT * FROM user WHERE email = '$email'");
   $queryValidationUsername = mysqli_query($connection, "SELECT * FROM user WHERE username = '$username'");
@@ -20,7 +21,7 @@ if (isset($_POST['register'])) {
     header("location: ?error=notAgreeTerms");
     die;
   } else {
-    $queryRegister = mysqli_query($connection, "INSERT INTO user (username, email, password) VALUES ('$username', '$email', '$password')");
+    $queryRegister = mysqli_query($connection, "INSERT INTO user (id_level, username, email, password) VALUES ('$id_level', '$username', '$email', '$password')");
     if (!$queryRegister) {
       header("location: ?error=registerFailed");
       die;
@@ -30,6 +31,8 @@ if (isset($_POST['register'])) {
     }
   }
 }
+
+$queryLevel = mysqli_query($connection, "SELECT * FROM level ORDER BY id ASC");
 
 ?>
 <!DOCTYPE html>
@@ -199,6 +202,15 @@ if (isset($_POST['register'])) {
                 <label for="email" class="form-label">Email</label>
                 <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" required value="<?= isset($_POST['email']) ? $_POST['email'] : '' ?>" />
               </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Level</label>
+                <select name="id_level" id="" class="form-control">
+                  <option value="">-- choose level --</option>
+                  <?php while ($dataLevel = mysqli_fetch_assoc($queryLevel)) : ?>
+                    <option value="<?= $dataLevel['id'] ?>"><?= $dataLevel['level_name'] ?></option>
+                  <?php endwhile ?>
+                </select>
+              </div>
               <div class="mb-3 form-password-toggle">
                 <label class="form-label" for="password">Password</label>
                 <div class="input-group input-group-merge">
@@ -213,6 +225,7 @@ if (isset($_POST['register'])) {
                   <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                 </div>
               </div>
+
 
               <div class="mb-3">
                 <div class="form-check">

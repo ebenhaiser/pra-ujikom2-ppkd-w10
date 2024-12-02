@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2024 at 03:20 AM
+-- Generation Time: Dec 02, 2024 at 08:58 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -84,7 +84,7 @@ CREATE TABLE `level` (
 --
 
 INSERT INTO `level` (`id`, `level_name`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Administrator', '2024-11-11 02:11:05', '2024-12-02 02:07:59', 0),
+(1, 'Administrator', '2024-11-11 02:11:05', '2024-12-02 04:54:31', 0),
 (2, 'Operator', '2024-11-11 02:11:05', '2024-11-15 01:36:53', 0),
 (3, 'Pimpinan', '2024-11-11 02:11:24', '2024-12-02 02:08:28', 0);
 
@@ -110,7 +110,10 @@ CREATE TABLE `trans_laundry_pickup` (
 --
 
 INSERT INTO `trans_laundry_pickup` (`id`, `id_order`, `id_customer`, `pickup_date`, `notes`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(5, 40, 6, '2024-12-03', NULL, '2024-12-02 01:56:48', '2024-12-02 01:56:48', 0);
+(5, 40, 6, '2024-12-03', NULL, '2024-12-02 01:56:48', '2024-12-02 01:56:48', 0),
+(6, 43, 16, '2024-12-07', NULL, '2024-12-02 04:56:02', '2024-12-02 04:56:02', 0),
+(7, 44, 9, '2024-12-11', NULL, '2024-12-02 05:06:50', '2024-12-02 05:06:50', 0),
+(8, 45, 21, '2024-12-03', NULL, '2024-12-02 07:27:30', '2024-12-02 07:27:30', 0);
 
 -- --------------------------------------------------------
 
@@ -139,7 +142,11 @@ CREATE TABLE `trans_order` (
 
 INSERT INTO `trans_order` (`id`, `id_customer`, `order_code`, `order_date`, `order_end_date`, `order_status`, `total_price`, `order_pay`, `order_change`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (40, 6, 'LNDRY-202412020249131', '2024-12-02', '2024-12-03', 1, 12600, 20000, 7400, '2024-12-02 01:49:41', '2024-12-02 01:56:48', 0),
-(41, 7, 'LNDRY-2024120203171942', '2024-12-04', '2024-12-05', 0, 46800, NULL, NULL, '2024-12-02 02:17:47', '2024-12-02 02:17:47', 0);
+(41, 7, 'LNDRY-2024120203171942', '2024-12-04', '2024-12-05', 0, 46800, NULL, NULL, '2024-12-02 02:17:47', '2024-12-02 02:17:47', 0),
+(42, 13, 'LNDRY-2024120205080243', '2024-12-05', '2024-12-06', 0, 33000, NULL, NULL, '2024-12-02 04:08:37', '2024-12-02 04:08:37', 0),
+(43, 16, 'LNDRY-2024120205550144', '2024-12-06', '2024-12-07', 1, 40600, 50000, 9400, '2024-12-02 04:55:45', '2024-12-02 04:56:02', 0),
+(44, 9, 'LNDRY-2024120206053045', '2024-12-10', '2024-12-11', 1, 30000, 40000, 10000, '2024-12-02 05:06:00', '2024-12-02 05:06:50', 0),
+(45, 21, 'LNDRY-2024120208265846', '2024-12-02', '2024-12-03', 1, 21000, 50000, 29000, '2024-12-02 07:27:14', '2024-12-02 07:27:30', 0);
 
 -- --------------------------------------------------------
 
@@ -167,7 +174,14 @@ INSERT INTO `trans_order_detail` (`id`, `id_order`, `id_service`, `qty`, `subtot
 (43, 40, 1, 700, 4200, NULL, '2024-12-02 01:49:41', '2024-12-02 01:49:41', 0),
 (44, 40, 4, 1200, 8400, NULL, '2024-12-02 01:49:41', '2024-12-02 01:49:41', 0),
 (45, 41, 1, 5000, 30000, NULL, '2024-12-02 02:17:47', '2024-12-02 02:17:47', 0),
-(46, 41, 4, 2400, 16800, NULL, '2024-12-02 02:17:47', '2024-12-02 02:17:47', 0);
+(46, 41, 4, 2400, 16800, NULL, '2024-12-02 02:17:47', '2024-12-02 02:17:47', 0),
+(47, 42, 2, 3600, 16200, NULL, '2024-12-02 04:08:37', '2024-12-02 04:08:37', 0),
+(48, 42, 4, 2400, 16800, NULL, '2024-12-02 04:08:37', '2024-12-02 04:08:37', 0),
+(49, 43, 1, 3500, 21000, NULL, '2024-12-02 04:55:45', '2024-12-02 04:55:45', 0),
+(50, 43, 4, 2800, 19600, NULL, '2024-12-02 04:55:45', '2024-12-02 04:55:45', 0),
+(51, 44, 2, 3400, 15300, NULL, '2024-12-02 05:06:00', '2024-12-02 05:06:00', 0),
+(52, 44, 4, 2100, 14700, NULL, '2024-12-02 05:06:00', '2024-12-02 05:06:00', 0),
+(53, 45, 1, 3500, 21000, NULL, '2024-12-02 07:27:14', '2024-12-02 07:27:14', 0);
 
 -- --------------------------------------------------------
 
@@ -190,10 +204,10 @@ CREATE TABLE `type_of_service` (
 --
 
 INSERT INTO `type_of_service` (`id`, `service_name`, `price`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Cuci dan Gosok', 6000, 'Free wife', '2024-11-15 02:58:44', '2024-11-15 06:42:22', 0),
-(2, 'Hanya Cuci', 4500, '', '2024-11-15 03:09:17', '2024-11-15 03:09:17', 0),
-(3, 'Hanya Gosok ', 5000, '', '2024-11-15 03:10:15', '2024-11-15 03:10:15', 0),
-(4, ' Laundry Besar', 7000, ' Seperti selimut, karpet, mantel dan sprei my love', '2024-11-15 03:10:35', '2024-11-30 14:08:30', 0);
+(1, 'Cuci dan Setrika', 6000, '(Wash and Iron) Comprehensive laundry service that includes washing, drying, and ironing to ensure your clothes are ready to wear.	', '2024-11-15 02:58:44', '2024-12-02 04:18:33', 0),
+(2, 'Hanya Cuci', 4500, '(Only Wash) Basic washing service for your laundry without ironing, perfect for those who prefer to manage drying and ironing themselves.	', '2024-11-15 03:09:17', '2024-12-02 04:18:51', 0),
+(3, 'Hanya Setrika', 5000, '(Only Iron) Professional ironing service for pre-washed clothes, providing a crisp and neat finish.	', '2024-11-15 03:10:15', '2024-12-02 04:19:08', 0),
+(4, 'Laundry Besar', 7000, '(Heavy Laundry) Specialized service for larger items such as bed linens, blankets, and curtains, ensuring thorough cleaning and care.	', '2024-11-15 03:10:35', '2024-12-02 04:19:36', 0);
 
 -- --------------------------------------------------------
 
@@ -218,11 +232,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `id_level`, `username`, `email`, `password`, `profile_picture`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'Admin', 'admin@gmail.com', '12345678', 'profile_picture1.jpg', '2024-11-11 02:30:45', '2024-12-02 02:08:58', 0),
+(1, 1, 'Admin', 'admin@gmail.com', '12345678', 'profile_picture1.jpg', '2024-11-11 02:30:45', '2024-12-02 04:25:26', 0),
 (13, 3, 'Bang Ganteng', 'bang.ganteng@gmail.com', '12345678', 'profile_picture13.jpeg', '2024-11-28 12:04:23', '2024-11-28 12:58:11', 0),
-(14, 2, 'Mia K.', 'mia.k@gmail.com', '12345678', 'profile_picture14.jpeg', '2024-11-28 12:16:42', '2024-12-02 02:13:32', 0),
+(14, 2, 'Mia Khalifa', 'mia.k@gmail.com', '12345678', 'profile_picture14.jpeg', '2024-11-28 12:16:42', '2024-12-02 05:14:52', 0),
 (15, 3, 'Mr. Bean', 'mr.bean@gmail.com', '12345678', 'profile_picture15.jpg', '2024-11-28 12:24:47', '2024-11-28 12:57:59', 0),
-(16, 0, 'Sumanto', 'sumanto@gmail.com', '12345678', 'profile_picture16.jpg', '2024-11-28 13:05:03', '2024-11-28 13:05:26', 0);
+(17, 1, 'Dede Inoen', 'dede.inoen@gmail.com', '12345678', 'profile_picture17.jpg', '2024-12-02 02:27:09', '2024-12-02 02:27:27', 0);
 
 --
 -- Indexes for dumped tables
@@ -284,25 +298,25 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `level`
 --
 ALTER TABLE `level`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `trans_laundry_pickup`
 --
 ALTER TABLE `trans_laundry_pickup`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `trans_order`
 --
 ALTER TABLE `trans_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `trans_order_detail`
 --
 ALTER TABLE `trans_order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `type_of_service`
@@ -314,7 +328,7 @@ ALTER TABLE `type_of_service`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

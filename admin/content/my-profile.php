@@ -47,17 +47,7 @@ $queryLevel = mysqli_query($connection, "SELECT * FROM level");
         <h3>My Profile</h3>
     </div>
     <div class="card-body">
-        <?php if (isset($_GET['edit']) && $_GET['edit'] == 'success'): ?>
-            <div class="alert alert-success alert-dismissible" role="alert">
-                Edit profile success!
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php elseif (isset($_GET['edit']) && $_GET['edit'] == 'errorExtension'): ?>
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                Wrong file extension!
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php endif ?>
+        <?php include 'controller/alert-data-crud.php' ?>
         <img width="150px"
             src="<?= !empty($rowEdit['profile_picture']) && file_exists('img/profile_picture/' . $rowEdit['profile_picture']) ? 'img/profile_picture/' . $rowEdit['profile_picture'] : 'https://placehold.co/100' ?>"
             alt="" class="mt-4 rounded">
@@ -86,19 +76,6 @@ $queryLevel = mysqli_query($connection, "SELECT * FROM level");
                         <?php endwhile ?>
                     </select>
                 </div>
-                <?php if ($rowEdit['id_level'] == 2) : ?>
-                    <div class="col-sm-6 mb-3">
-                        <label for="email" class="form-label">Jurusan</label>
-                        <select class="form-control" name="id_jurusan" id="" disabled="true">
-                            <option value=""> -- Add Jurusan -- </option>
-                            <?php while ($rowJurusan = mysqli_fetch_assoc($queryJurusan)) : ?>
-                                <option value="<?= $rowJurusan['id'] ?>"
-                                    <?= isset($rowEdit['id_jurusan']) && ($rowJurusan['id'] == $rowEdit['id_jurusan']) ? 'selected' : '' ?>>
-                                    <?= $rowJurusan['nama_jurusan'] ?></option>
-                            <?php endwhile ?>
-                        </select>
-                    </div>
-                <?php endif ?>
                 <div class="col-sm-6 mb-3">
                     <label for="photoProfile" class="form-label">Foto Profil</label>
                     <input type="file" class="form-control" id="profile_picture" name="photo">

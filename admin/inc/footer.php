@@ -4,9 +4,9 @@
             <!-- &#169; Laundry Faith | by Ebenhaiser | Using Sneat Template -->
             <span>&#169; Laundry Faith</span>
             |
-            <span>by Ebenhaiser</span>
+            <span>Made by <a href="https://www.linkedin.com/in/ebenhaiser-caprisiano/" target="_blank">Ebenhaiser.</a></span>
             |
-            <span>Using Sneat Template</span>
+            <span>Using <a href="https://themewagon.com/themes/free-responsive-bootstrap-5-html5-admin-template-sneat/" target="_blank">Sneat Admin Template</a></span>
         </div>
     </div>
 </footer>
